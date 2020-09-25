@@ -1,0 +1,343 @@
+/* 
+    Created on : 22 Jul 2017, 8:44:46 PM
+    Author     : Joshua Sello
+    Last Updated: 3:29 AM 2018/03/03
+*/ 
+
+/*  border radius  */
+@mixin border_radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin border_radius_top_left($radius) {
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-radius-topleft: $radius;
+    border-top-left-radius: $radius;
+}
+@mixin border_radius_top_right($radius) {
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-radius-topright: $radius;
+    border-top-right-radius: $radius;
+}
+@mixin border_radius_bottom_right($radius) {
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-radius-bottomright: $radius;
+    border-bottom-right-radius: $radius;
+}
+@mixin border_radius_bottom_left($radius) {
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-radius-bottomleft: $radius;
+    border-bottom-left-radius: $radius;
+}
+
+/*gradients
+==============================================================================*/
+@mixin gradient($color_1,$color_2) {
+    background: $color_1; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient( $color_1, $color_2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( $color_1, $color_2); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( $color_1, $color_2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( $color_1, $color_2); /* Standard syntax */
+}
+@mixin gradient_diagonal($color_1,$color_2) {
+    background: $color_1; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(to bottom right, $color_1, $color_2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(to bottom right, $color_1, $color_2); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(to bottom right, $color_1, $color_2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, $color_1, $color_2); /* Standard syntax */
+}
+@mixin gradient_text($color_1,$color_2) {
+    background: -webkit-linear-gradient($color_1, $compliment_1);
+    background: -o-linear-gradient(left top, $color_1, $compliment_1); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left top, $color_1, $compliment_1); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(left top, $color_1, $compliment_1); /* Standard syntax */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@mixin gradient_border($color_1,$color_2) {
+    border-style: solid;
+    -webkit-border-image: 
+      -webkit-gradient(linear, 100% 0, 0 0, from($color_1), to($color_2)) 1 100%;
+    -webkit-border-image: 
+      -webkit-linear-gradient(right, $color_1, $color_2) 1 100%;
+    -moz-border-image:
+      -moz-linear-gradient(right, $color_1, $color_2) 1 100%;  
+    -o-border-image:
+      -o-linear-gradient(right, $color_1, $color_2) 1 100%;
+    border-image:
+      linear-gradient(to right, $color_1, $color_2) 1 100%; 
+}
+
+/*orientation
+==============================================================================*/
+@mixin fit_content_x() {
+    
+    //INITIAL SETTINGS
+    width: inherit;
+    
+    /*OLDER WEBKIT BROWSERS*/
+    width: intrinsic;
+    
+    /*FIREFOX*/
+    width: -moz-available;
+    
+    width: max-content;
+    
+    /*WEBKIT*/
+    width: -webkit-fit-content; 
+    
+    /*FIREFOX*/
+    width: -moz-fit-content;
+    
+    width: fit-content;
+}
+@mixin fit_content_y() {
+    
+    /*FIREFOX DOES NOT SUPPORT HEIGHT/MAX-HEIGHT/MIN-HEIGHT*/
+    //INITIAL SETTINGS
+    height: inherit;
+    
+    /*OLDER WEBKIT BROWSERS*/
+    height: intrinsic;
+    
+    /*FIREFOX*/
+    height: -moz-available;
+    
+    height: min-content;
+    
+    /*WEBKIT*/
+    height: -webkit-fit-content; 
+    
+    /*FIREFOX*/
+    height: -moz-fit-content;
+    
+    height: fit-content;
+}
+@mixin fit_content_xy() {
+    
+    //INITIAL SETTINGS
+    width: inherit; 
+    height: inherit;
+    
+    /*OLDER WEBKIT BROWSERS*/
+    height: intrinsic;
+    width: intrinsic;
+    
+    /*FIREFOX*/
+    height: -moz-available;
+    width: -moz-available;
+    
+    width: max-content;
+    height: min-content;
+    
+    /*WEBKIT*/
+    height: -webkit-fit-content; 
+    width: -webkit-fit-content;
+    
+    /*FIREFOX*/
+    height: -moz-fit-content;
+    width: -moz-fit-content;
+    
+    width: fit-content;
+    height: fit-content;
+    
+}
+@mixin absolute_align_x() {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0px;
+    right: 0px;
+}
+@mixin absolute_align_y() {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+@mixin absolute_align_xy() {
+    position: absolute;
+    margin: auto;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+@mixin center_vertical() {
+    position: relative;
+    margin: 0px;
+    top: 50%;
+    @include transform(-50%);
+}
+@mixin transform($n) {
+    -webkit-transform: translateY($n);
+    -ms-transform: translateY($n);
+    transform: translateY($n);
+}
+@mixin translate($right,$down){
+    -ms-transform: translate($right,$down); /* IE 9 */
+    -webkit-transform: translate($right,$down); /* Safari */
+    transform: translate($right,$down); /* Standard syntax */
+}
+@mixin rotate($deg){
+    -ms-transform: rotate($deg); /* IE 9 */
+    -webkit-transform: rotate($deg); /* Safari */
+    transform: rotate($deg);
+}
+@mixin scale($width,$height){
+    -ms-transform: scale($width,$height); /* IE 9 */
+    -webkit-transform: scale($width,$height); /* Safari */
+    transform: scale($width,$height); /* Standard syntax */
+}
+@mixin skewX($deg){
+    -ms-transform: skewX($deg); /* IE 9 */
+    -webkit-transform: skewX($deg); /* Safari */
+    transform: skewX($deg); /* Standard syntax */
+}
+@mixin skewY($deg){
+    -ms-transform: skewY($deg); /* IE 9 */
+    -webkit-transform: skewY($deg); /* Safari */
+    transform: skewY($deg);
+}
+@mixin skewXY($deg_x,$deg_y){
+    -ms-transform: skew($deg_x,$deg_y); /* IE 9 */
+    -webkit-transform: skew($deg_x,$deg_y); /* Safari */
+    transform: skew($deg_x,$deg_y); /* Standard syntax */
+}
+@mixin matrix($scale_x,$skew_y,$skew_x,$scale_y,$translate_x,$translate_y){
+    -ms-transform: matrix(1, -0.3, 0, 1, 0, 0); /* IE 9 */
+    -webkit-transform: matrix(1, -0.3, 0, 1, 0, 0); /* Safari */
+    transform: matrix(1, -0.3, 0, 1, 0, 0); /* Standard syntax */
+}
+
+/*diplay
+==============================================================================*/
+@mixin background_img($img) {
+    background: no-repeat transparent center $img;
+    background-size: cover;
+}
+@mixin bg_img($img) {
+    background: no-repeat transparent center $img;
+    background-size: cover;
+}
+@mixin bg_img_text($img){
+    background: $img center no-repeat;
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@mixin border_gradient_top_bottom($color_1,$color_2) {
+    -webkit-border-image: 
+      -webkit-gradient(linear, 0 0, 0 100%, from($primary_color), to($compliment_1)) 1 100%;
+    -webkit-border-image: 
+      -webkit-linear-gradient($primary_color, $compliment_1) 1 100%;
+    -moz-border-image:
+      -moz-linear-gradient($primary_color, $compliment_1) 1 100%;    
+    -o-border-image:
+      -o-linear-gradient($primary_color, $compliment_1) 1 100%;
+    border-image:
+      linear-gradient(to bottom, $primary_color, $compliment_1) 1 100%;
+}
+@mixin border_gradient_left_right($color_1,$color_2) {
+    -webkit-border-image: 
+      -webkit-gradient(linear, 100% 0, 0 0, from($primary_color), to($compliment_1)) 1 100%;
+    -webkit-border-image: 
+      -webkit-linear-gradient(right, $primary_color, $compliment_1) 1 100%;
+    -moz-border-image:
+      -moz-linear-gradient(right, $primary_color, $compliment_1) 1 100%;  
+    -o-border-image:
+      -o-linear-gradient(right, $primary_color, $compliment_1) 1 100%;
+    border-image:
+      linear-gradient(to right, $primary_color, $compliment_1) 1 100%;
+}
+
+// Filters
+@mixin filter_blur($n) {
+    -webkit-filter: blur($n);
+    -moz-filter: blur($n);
+    -o-filter: blur($n);
+    -ms-filter: blur($n);
+    filter: blur($n);
+}
+@mixin filter_grayscale($n) {
+    -webkit-filter: grayscale($n);
+    -moz-filter: grayscale($n);
+    -o-filter: grayscale($n);
+    -ms-filter: grayscale($n);
+    filter: grayscale($n);
+}
+@mixin filter_brightness($n) {
+    -webkit-filter: brightness($n);
+    -moz-filter: brightness($n);
+    -o-filter: brightness($n);
+    -ms-filter: brightness($n);
+    filter: brightness($n);
+}
+@mixin filter_contrast($n) {
+    -webkit-filter: contrast($n);
+    -moz-filter: contrast($n);
+    -o-filter: contrast($n);
+    -ms-filter: contrast($n);
+    filter: contrast($n);
+}
+@mixin filter_drop_shadow($n) {
+    -webkit-filter: drop-shadow($n);
+    -moz-filter: drop-shadow($n);
+    -o-filter: drop-shadow($n);
+    -ms-filter: drop-shadow($n);
+    filter: drop-shadow($n);
+}
+@mixin filter_hue_rotate($n) {
+    -webkit-filter: hue-rotate($n);
+    -moz-filter: hue-rotate($n);
+    -o-filter: hue-rotate($n);
+    -ms-filter: hue-rotate($n);
+    filter: hue-rotate($n);
+}
+@mixin filter_invert($n) {
+    -webkit-filter: invert($n);
+    -moz-filter: invert($n);
+    -o-filter: invert($n);
+    -ms-filter: invert($n);
+    filter: invert($n);
+}
+@mixin filter_opacity($n) {
+    -webkit-filter: opacity($n);
+    -moz-filter: opacity($n);
+    -o-filter: opacity($n);
+    -ms-filter: opacity($n);
+    filter: opacity($n);
+}
+@mixin filter_saturate($n) {
+    -webkit-filter: saturate($n);
+    -moz-filter: saturate($n);
+    -o-filter: saturate($n);
+    -ms-filter: saturate($n);
+    filter: saturate($n);
+}
+@mixin filter_sepia($n) {
+    -webkit-filter: sepia($n);
+    -moz-filter: sepia($n);
+    -o-filter: sepia($n);
+    -ms-filter: sepia($n);
+    filter: sepia($n);
+}
+@mixin filter_url($n) {
+    -webkit-filter: url($n);
+    -moz-filter: url($n);
+    -o-filter: url($n);
+    -ms-filter: url($n);
+    filter: url($n);
+}
+
+
+/*FORM*/
+@mixin appearance($appearance) {
+    -webkit-appearance: $appearance;
+    -moz-appearance: $appearance;
+    -ms-appearance: $appearance;     /* not currently supported */
+    -o-appearance: $appearance;      /* not currently supported */
+}

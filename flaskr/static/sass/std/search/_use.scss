@@ -1,0 +1,43 @@
+/* 
+    Created on : Sep 2, 2018, 9:33:57 AM
+    Author     : Joshua Sello
+*/
+.search-bar {
+    position: relative;
+    float: left;
+    display: block;
+    margin: 0px 20px;
+    height: 40px;
+    min-width: 280px;
+    max-width: 500px;
+    width: calc(100% - 340px);
+    
+    .search-input {
+        position: absolute;
+        padding-left: 50px;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: calc(100% - 50px);
+        border: none;
+        background: $def-grey-4;
+        transition-duration: .5s;
+        transition-property: all;
+        @include border_radius(4px);
+        
+        
+        &:focus {
+            background: #fff;
+            box-shadow: $def-shadow-3;
+        }
+    }
+    .search-button {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 40px;
+        border: none;
+        background: transparent;
+    }
+}

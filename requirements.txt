@@ -1,0 +1,6 @@
+flask
+pymysql
+pandas
+sklearn
+python-docx
+numpy

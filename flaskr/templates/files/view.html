@@ -1,0 +1,436 @@
+{% extends 'base-main.html' %}
+
+{% block page_title %}My Files{% endblock %}
+
+{% block header_imports %}
+<link href="{{ url_for('static', filename='css/modules/files.css') }}" rel="stylesheet" type="text/css"/>
+<script src="{{ url_for('static', filename='js/libs/file_operations.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block layout_content %}
+<script>
+    var FILE_PATH_KEY = "{{ file_path_key }}";
+    
+    var $current_tab = $('#menu-tab-files');
+    $current_tab.addClass('menu-item-active');
+</script>
+
+<div class="layout-header grid-width-full">
+    <div class="content_width">
+        <p class="heading heading-medium">My Files</p>
+        
+        
+        <p class="sub-heading">Navigator</p>
+        <div class="folder-path">
+            <div class="folder-path-hold">
+                {% for i, part in enumerate(rev_path_parts) %}
+                {% if i > 0 %}
+                <p class="arrow ti-angle-right center_vertical"></p>
+                {% endif %}
+
+                {% if i == 0 %}
+                <div class="path-part" id="current-folder">
+                    <p class="path-text center_vertical dropdown-trig" data-dropdown-id="dd-path">{{ part["name"] }}</p>
+                    <p class="dropdown-icon center_vertical ti-angle-down dropdown-trig" data-dropdown-id="dd-path"></p>
+                    
+                    <!--Path navigator dropdown-->
+                    {% include 'cmp/file-path-dropdown.html' %}
+                </div>
+                
+                {% else %}
+                <div class="path-part parent-part" data-path="{{ part["location"] }}" data-key="{{ get_folder_key(part["location"]) }}">
+                    <p class="path-text center_vertical">{{ part["name"] }}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $(".parent-part").click(function(){
+                    var key = $(this).data("key");
+                    window.location.href = "/f/"+key;
+                });
+            });
+        </script>
+        
+        <p class="sub-heading">Actions & Info</p>
+        <div class="actions">
+            
+            <div class="action center_vertical">
+                <button class="action-cover">
+                    <span class="ti-filter icon center_vertical"></span>
+                </button>
+            </div>
+            <div class="action center_vertical">
+                <button class="action-cover">
+                    <span class="ti-star icon center_vertical"></span>
+                </button>
+            </div>
+            <form class="action center_vertical">
+                {% if view_type == "list" %}
+                <button class="action-cover" name="v" value="card">
+                    <span class="icon ti-view-grid center_vertical"></span>
+                </button>
+                {% else %}
+                <button class="action-cover" name="v" value="list">
+                    <span class="icon ti-view-list-alt center_vertical"></span>
+                </button>
+                {% endif %}
+            </form>
+            <div class="action center_vertical">
+                <button class="action-cover dropdown-trig" data-dropdown-id="dd-info" id="action-toggle-view">
+                    <span class="ti-info-alt icon center_vertical"></span>
+                </button>
+                <div class="dropdown dropdown-right" id="dd-info">
+                    <div class="dropdown-group">
+                        <div class="dropdown-item dropdown-item-textinput">
+                            <p class="icon ti-search center_vertical"></p>
+                            <input title="Click to search" class="dropdown-input center_vertical" name="" placeholder="Search Folder" required/>
+                        </div>
+                    </div>
+                    <div class="dropdown-group">
+                        <div class="dropdown-item dropdown-trig" data-dropdown-id="dd-path-new-folder">
+                            <p class="icon ti-folder center_vertical"></p>
+                            <p class="item-text center_vertical">New Folder</p>
+                        </div>
+                        <div class="dropdown-item dropdown-trig" data-dropdown-id="dd-path-rename-folder">
+                            <p class="icon ti-pencil-alt center_vertical"></p>
+                            <p class="item-text center_vertical">Rename</p>
+                        </div>
+                        <div class="dropdown-item">
+                            <p class="icon ti-arrow-right center_vertical"></p>
+                            <p class="item-text center_vertical">Move</p>
+                        </div>
+                        <div class="dropdown-item">
+                            <p class="icon ti-star center_vertical"></p>
+                            <p class="item-text center_vertical">Favourite</p>
+                        </div>
+                        <div class="dropdown-item">
+                            <p class="icon ti-trash center_vertical"></p>
+                            <p class="item-text center_vertical">Delete</p>
+                        </div>
+                    </div>
+</div>
+            </div>
+            <form class="fit_content_xy center_vertical">
+                {% if organized %}
+                <button name="a" value="existing" class="action-button" id="action-view-toggle"><span class="icon ti-files"></span>Existing View</button>
+                {% else %}
+                <button name="a" value="organized" class="action-button" id="action-view-toggle"><span class="icon ti-wand"></span>Organize Path</button>
+                {% endif %}
+            </form>
+            
+            {% if len(folders) > 0 %}
+            <div class="pill center_vertical">
+                <p class="pill-text center_vertical">Folder{% if len(folders) > 1 %}s{% endif %}</p>
+                <p class="pill-count center_vertical">{{ len(folders) }}</p>
+            </div>
+            {% endif %}
+            {% if len(grouped["documents"]) > 0 and organized %}
+            <div class="pill center_vertical">
+                <p class="pill-text center_vertical">Document Groups</p>
+                <p class="pill-count center_vertical">{{ len(grouped["documents"]) }}</p>
+            </div>
+            {% endif %}
+            {% if len(files["documents"]) > 0 %}
+            <div class="pill center_vertical">
+                <p class="pill-text center_vertical">Document{% if len(files["documents"]) > 1 %}s{% endif %}</p>
+                <p class="pill-count center_vertical">{{ len(files["documents"]) }}</p>
+            </div>
+            {% endif %}
+            {% if len(files["images"]) > 0 %}
+            <div class="pill center_vertical">
+                <p class="pill-text center_vertical">Image{% if len(files["images"]) > 1 %}s{% endif %}</p>
+                <p class="pill-count center_vertical">{{ len(files["images"]) }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    
+    <!--Folder & File list-->
+    {% if view_type == "list" %}
+    <table class="files-list">
+        
+        {% for category, clusters in grouped.items() %}
+        
+        <!--File Category-->
+        <tr class='category-row'>
+            <td colspan='4'>
+                <p class="section-text">Grouped {{ category.capitalize() }}</p>
+            </td>
+        </tr>
+        
+        <!--File groups in file category-->
+        {% for cluster, files in clusters.items() %}
+        <tr class='group-row  section-category-grouped-{{ category }}'>
+            <td colspan='4'>
+                <p class="section-text">Group: {{ cluster }}</p>
+                
+                <div class="actions" id="actions-file-group">
+                    
+                    <!--Category groups actions-->
+                    <div class="action">
+                        <button class="button-toggle-collape action-cover" data-category="grouped-{{ cluster }}">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr class="category-grouped-{{ category }} section-category-grouped-{{ cluster }} head">
+            <td>Name</td>
+            <td></td>
+            <td>Last modified</td>
+            <td>Size</td>
+        </tr>
+        
+        <!--File list-->
+        {% for item in files %}
+        <tr class="file-row-item category-grouped-{{ category }} section-category-grouped-{{ cluster }}"
+            data-type="file"
+            data-location="{{ item["location"] }}"
+            data-quarantined="{{ item["quarantined"] }}"
+            data-favourite="{{ item["favourite"] }}"
+            data-category="{{ item["type"] }}"
+            >
+            <td class="cell-main">
+                {% if item["type"] == "images" %}
+                <div class="file-display" style="background: #eee url('{{ url_for('static', filename='_image_dump/'+item["name"]) }}') no-repeat center; background-size: cover;"></div>
+                {% elif item["type"] == "documents" %}
+                <div class="file-display"><p class="display-text center_vertical">.{{ ext(item["name"]) }}</p></div>
+                {% else %}
+                <div class="file-display"><p class="display-text color_grey_3 center_vertical">?</p></div>
+                {% endif %}
+                <p class="file-text">{{ item["name"] }}</p>
+            </td>
+            <td class="cell-properties"></td>
+            <td class="cell-mtime">
+                <p class="file-text">{{ datetime_format(item["mtime"]) }}</p>
+            </td>
+            <td class="cell-size">
+                <p class="file-text">{{ get_size_string(item["size"]) }}</p>
+            </td>
+        </tr>
+        {% endfor %} <!--End for all files -->
+        {% endfor %} <!--End for all file groups-->
+        {% endfor %} <!--End for all file types-->
+        
+        
+        <!--Folders-->
+        {% if len(folders) > 0 %}
+        <tr class='category-row'>
+            <td colspan='4'>
+                <p class="section-text">Folders ({{ len(folders) }})</p>
+                
+                <!--Folder category actions-->
+                <div class="actions" id="actions-file-group">
+                    <div class="action">
+                        <button class="button-toggle-collape action-cover"
+                                data-category="folders"
+                                >
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr class="category-folders head">
+            <td>Name</td>
+            <td></td>
+            <td>Last modified</td>
+            <td>Size</td>
+        </tr>
+        
+        <!--Folder list-->
+        {% for item in folders %}
+        <tr class="folder-row-item category-folders"
+            data-type="folder"
+            data-location="{{ item["location"] }}"
+            data-key="{{ get_folder_key(item["location"]) }}"
+            >
+            <td class="cell-main">
+                <p class="file-icon ti-folder"></p>
+                <p class="file-text">{{ item["name"] }}</p>
+            </td>
+            <td class="cell-properties"></td>
+            <td class="cell-mtime">
+                <p class="file-text">{{ datetime_format(item["mtime"]) }}</p>
+            </td>
+            <td class="cell-size">
+                <p class="file-text">{{ get_size_string(item["size"]) }}</p>
+            </td>
+        </tr>
+        {% endfor %} <!--End for folders-->
+        {% endif %}
+        
+        
+        <!--Main files Category-->
+        {% for category, items in files.items() %}
+        {% if len(items) > 0 %}
+        <tr class='category-row'>
+            <td colspan='4'>
+                <p class="section-text">{{ str(category).capitalize() }} ({{len(items)}})</p>
+                <div class="actions">
+                    <div class="action" id="actions-file-group">
+                        <button class="button-toggle-collape action-cover" data-category="{{ category }}">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        
+        <tr class="category-{{ category }} head">
+            <td>Name</td>
+            <td></td>
+            <td>Last modified</td>
+            <td>Size</td>
+        </tr>
+        
+        {% for item in items %}
+        <tr class="file-row-item category-{{ category }}" 
+            data-type="file"
+            data-location="{{ item["location"] }}"
+            >
+            <td class="cell-main">
+                {% if item["type"] == "images" %}
+                <div class="file-display"
+                    style="background: #eee url('{{ url_for('static', filename='_file_dump/'+item["name"]) }}') no-repeat center; background-size: cover;"
+                    ></div>
+                {% elif item["type"] == "documents" %}
+                <div class="file-display"><p class="display-text center_vertical">.{{ ext(item["name"]) }}</p></div>
+                {% else %}
+                <div class="file-display"><p class="display-text color_grey_3 center_vertical">?</p></div>
+                {% endif %}
+                <p class="file-text">{{ item["name"] }}</p>
+            </td>
+            <td class="cell-properties"></td>
+            <td class="cell-mtime">
+                <p class="file-text">{{ datetime_format(item["mtime"]) }}</p>
+            </td>
+            <td class="cell-size">
+                <p class="file-text">{{ get_size_string(item["size"]) }}</p>
+            </td>
+        </tr>
+        {% endfor %} <!--End for items-->
+        {% endif %}
+        {% endfor %} <!--End for categories-->
+    </table>
+    
+    {% else %}
+    
+    <div class="files-cards">
+        <!--Folders-->
+        {% if len(folders) > 0 %}
+        <div class="hold">
+            <!--Folder list-->
+            {% for item in folders %}
+            <div class="folder-card-item" 
+                title="{{ item["name"] }}" 
+                data-type="folder"
+                data-location="{{ item["location"] }}"
+                data-key="{{ get_folder_key(item["location"]) }}"
+                data-favourite="{{ item["favourite"] }}"
+                data-watch="{{ item["watch"] }}"
+
+                {% if len(listdir(item["location"]))%}style="border-color: #3998EC;"{% endif %}>
+                <p class="item-text center_vertical">{{ item["name"] }}</p>
+            </div>
+            {% endfor %} <!--End for folders-->
+        </div>
+        {% endif %}
+        
+        
+        <!--Grouped files-->
+        
+        {% for category, clusters in grouped.items() %}
+        <p class="type-heading color_2">{{ category.capitalize() }}</p>
+        {% for cluster, files in clusters.items() %}
+        <div class="group">
+            <div class="group-head">
+                <p class="group-heading center_vertical">Group: {{ terms[cluster] }}</p>
+                
+                <form class="actions" id="actions-file-group">
+                    <button class="action-button-wicon center_vertical"><span class="ti-save icon"></span>Save</button>
+                </form>
+            </div>
+            
+            <!--File list-->
+            {% for item in files %}
+            {% if item["type"] == "images" %}
+            <!--Image file card-->
+            {% include 'cmp/file-card-image.html' %}
+            
+            {% elif ext(item["name"]) in ("pdf", "txt") %}
+            <!--Document file-->
+            {% include 'cmp/file-card-doc.html' %}
+            
+            {% else %}
+            <!--Generic file card-->
+            {% include 'cmp/file-card-gen.html' %}
+            
+            {% endif %}
+            {% endfor %} <!--end file list-->
+        </div>
+        {% endfor %} <!--end groups list-->
+        {% endfor %} <!--end category list-->
+        
+        
+        <!--Files-->
+        {% for category, items in files.items() %}
+        {% if len(items) > 0 %}
+        {% for item in items %}
+        {% if item["type"] == "images" %}
+        <!--Image file card-->
+        {% include 'cmp/file-card-image.html' %}
+        
+        {% elif ext(item["name"]) in ("pdf", "txt") %}
+        <!--Document file-->
+        {% include 'cmp/file-card-doc.html' %}
+        
+        {% else %}
+        <!--Generic file card-->
+        {% include 'cmp/file-card-gen.html' %}
+        
+        {% endif %}
+        {% endfor %} <!--End for items list-->
+        {% endif %}
+        {% endfor %}  <!--End for category in files list-->
+    </div>
+    
+    {% endif %}
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        
+        
+//        window.setInterval(function(){
+//            data = {
+//                "dir_key": "{{ file_path_key }}"
+//            };
+//            $.post("/f/ping_changes/", data, function(data, status){
+//                if(status === "success"){ 
+//                    if(data === "y"){
+//                        window.location.href = "/f/{{ file_path_key }}";
+//                    }
+//                }
+//            });
+//
+//        }, 500);
+    });
+</script>
+
+<!--Context menus-->
+{% include 'cmp/files-contextmenus.html' %}
+{% endblock %}
+
+
+{% block post_imports %}
+<script src="{{url_for('static', filename='js/components/files.js')}}" type="text/javascript"></script>
+<script src="{{url_for('static', filename='js/components/dropdown.js')}}" type="text/javascript"></script>
+{% endblock %}

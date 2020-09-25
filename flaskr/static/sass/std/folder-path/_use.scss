@@ -1,0 +1,52 @@
+/* 
+    Created on : Aug 25, 2018, 8:58:26 PM
+    Author     : Joshua Sello
+*/
+.folder-path {
+    position: relative;
+    float: left;
+    margin-bottom: 35px;
+    height: 35px;
+    width: 100%;
+    
+    .folder-path-hold {
+        position: relative;
+        float: left;
+        height: 100%;
+        @include fit_content_x;
+    }
+    .path-part {
+        position: relative;
+        float: right; // items printed backwards
+        padding: 0 15px;
+        height: 35px;
+        cursor: pointer;
+        transition-duration: .25s;
+        @include border_radius(100px);
+        @include fit_content_x;
+        
+        .path-text {
+            float: left;
+            margin: 0px;
+            font-size: 18px;
+        }
+        .dropdown-icon {
+            float: left;
+            margin-left: 10px;
+            font-size: 12px !important;
+            font-weight: bold;
+        }
+        
+        &:hover {
+            background: $def-grey-4;
+        }
+    }
+    
+    .arrow {
+        position: relative;
+        float: right; // items printed backwards
+        font-size: 12px;
+        color: $def-grey-2;
+    }
+}
+   

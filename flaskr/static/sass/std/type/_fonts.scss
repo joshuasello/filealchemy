@@ -1,0 +1,30 @@
+/* 
+    Created on : 29 Jun 2018, 7:01:45 PM
+    Author     : Joshua Sello
+*/
+// Font Imports
+@import url('https://fonts.googleapis.com/css?family=Muli');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+//      Base Font Imports
+// Default
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+// Font Variables
+$font-identity: 'Montserrat', sans-serif;
+$font-heading-1: 'Montserrat', sans-serif;
+
+$font-text-1: 'Muli', sans-serif;
+$font-text-2: 'Lato', sans-serif;
+$font-text-3: 'Lato', sans-serif;
+
+// Font Caller Functions
+.font-family-identity {font-family: $font-identity !important;}
+
+.font-family-heading-1 {font-family: $font-heading-1 !important;}
+
+.font-family-text-1 {font-family: $font-text-1 !important;}
+.font-family-text-2 {font-family: $font-text-2 !important;}
+.font-family-text-3 {font-family: $font-text-3 !important;}
+

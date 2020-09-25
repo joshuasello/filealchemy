@@ -1,0 +1,66 @@
+/* 
+    Created on : Sep 5, 2018, 10:07:22 PM
+    Author     : Joshua Sello
+*/
+
+.prompt {
+    position: fixed;
+    display: none;
+    padding: 15px 20px;
+    padding-left: 50px;
+    bottom: 20px;
+    right: 40px;
+    width: calc(100% - 65px);
+    max-width: 500px;
+    background: $def-color-2;
+    color: #fff;
+    z-index: 1001;
+    box-shadow: $def-shadow-3;
+    @include border_radius(10px);
+    @include fit_content_y;
+    
+    .prompt-text {
+        float: left;
+        margin: 0px;
+        text-align: left;
+    }
+    .icon-close {
+        position: absolute;
+        top: 0px;
+        left: 20px;
+        opacity: .7;
+        transition-duration: .25s;
+        cursor: pointer;
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
+    .prompt-text-hold {
+        position: relative;
+        float: left;
+        width: calc(100% - 220px);
+        @include fit_content_y;
+    }
+    .actions {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        max-width: 200px;
+        padding-right: 20px;
+        @include fit_content_x;
+        
+        .action-button {
+            margin: 0px;
+            padding: 5px 10px;
+            border-color: #fff;
+            color: #fff;
+            
+            &:hover {
+                color: $def-grey-1;
+                background: #fff;
+                box-shadow: $def-shadow-3;
+            }
+        }
+    }
+}

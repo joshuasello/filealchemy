@@ -1,0 +1,114 @@
+/* 
+    Created on : 29 Jun 2018, 8:00:32 PM
+    Author     : Joshua Sello
+    Description: 
+        helper class words are seperated by an under-score " _ "
+*/
+
+// Elements
+.cover {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+.divider-bottom {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
+.parallax {
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.bg_img {
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.column-text {
+    vertical-align: top;
+    width: 50%;
+    
+    p {
+        width: calc(100% - 50px);
+    }
+}
+.top_layer {
+    z-index: 11111;
+}
+.circle_explode {
+    .circle{
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        background: $def-color-1;
+        transition-duration: $def-trans-fast;
+        @include border_radius(100px);
+    }
+    .circle_before {
+        height: 0px;
+        width: 0px;
+    }
+    .circle_after {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+// Padding
+.no_horizontal_padding {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.no_vertical_padding {
+    padding-top: 50px !important;
+    padding-bottom: 0px !important;
+}
+
+// Margin
+.margin_top_none {margin-top: 0px !important;}
+.margin_bottom_none {margin-top: 0px !important;}
+
+// Display
+.display_none {display: none !important;}
+.display_block {display: block !important;}
+.display_row {display: table-row;}
+
+// Color
+.color_1 {color: $def-color-1 !important;}
+.color_2 {color: $def-color-2 !important;}
+.color_3 {color: $def-color-3 !important;}
+.color_4 {color: $def-color-4 !important;}
+.color_5 {color: $def-color-5 !important;}
+
+.color_grey_1 {color: $def-grey-1 !important;}
+.color_grey_2 {color: $def-grey-2 !important;}
+.color_grey_3 {color: $def-grey-3 !important;}
+.color_grey_4 {color: $def-grey-4 !important;}
+.color_grey_5 {color: $def-grey-5 !important;}
+
+// Positioning
+.center_vertical {
+    @include center_vertical();
+}
+.center_vertical_absolute {@include absolute_align_xy();}
+
+// Fiting
+.fit_content_x {@include fit_content_x();}
+.fit_content_y {@include fit_content_y();}
+.fit_content_xy {
+    @include fit_content_xy();
+    overflow: hidden;
+}
+
+// Debugging
+.debug {
+    background: #000 !important;
+    color: #0f0 !important;
+    outline: solid #f00 1px !important;
+}

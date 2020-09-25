@@ -1,0 +1,390 @@
+/* 
+    Created on : Sep 1, 2018, 9:57:48 AM
+    Author     : Joshua Sello
+*/
+#ctxm-file-view-collection, #ctxm-file-view-quarantine {
+    display: none;
+}
+
+
+.files-list, .files-cards {
+    position: relative;
+    float: left;
+    margin-bottom: 40px;
+    @include fit_content_y;
+}
+.files-list {
+    margin: 0px 20px;
+    width: calc(100% - 40px);
+    
+    .head {
+        display: table-row;
+        color: $def-grey-3;
+        td {
+            height: 40px;
+        }
+    }
+    
+    .category-row, .group-row {
+        display: table-row;
+        
+        .actions { 
+            position: absolute;
+            top: 10px;
+            right: 0px;
+            height: 40px;
+            @include fit_content_x;
+        }
+    }
+    
+    .category-row {
+        border-bottom: 1px $def-grey-4 solid;
+        
+        td {
+            height: 50px;
+            
+            .section-text {
+                margin: 0px;
+                font-size: 20px;
+                color: $def-color-2 !important;
+            }
+        }
+    }
+    .group-row {
+        td {
+            color: $def-color-2;
+            background: rgba(90, 77, 232, .1);
+            height: 40px;
+            padding-left: 20px;
+            
+            .actions {
+                right: 40px;
+                
+                .action {
+                    .action-button {
+                        color: $def-color-2;
+                        background: transparent;
+                        @include border_radius(100px);
+                    }
+                }
+            }
+        }
+    }
+}
+.files-cards {
+    width: 100%;
+    
+    .type-heading {
+        font-size: 20px;
+    }
+    
+    .hold, .group {
+        position: relative;
+        float: left;
+        @include fit_content_y;
+    }
+    .hold {
+        width: 100%;
+    }
+    .group {
+        padding: 0px 10px;
+        margin: 10px;
+        width: calc(100% - 42px);
+        border: 1px $def-color-2 solid;
+        @include border_radius(10px);
+        
+        .group-head {
+            position: relative;
+            float: left;
+            height: 50px;
+            width: 100%;
+            
+            .group-heading {
+                float: left;
+                margin-left: 20px;
+                color: $def-color-2;
+                font: {
+                    size: 20px;
+                }
+            }
+            .actions {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+        }
+    }
+}
+
+.file-row-item, .folder-row-item {
+    position: initial;
+    float: none;
+    margin: 0px;
+    width: 100%;
+    display: table-row;
+    transition-duration: .5s;
+    cursor: pointer;
+    @include border_radius(10px);
+    
+    td {
+        position: relative;
+        height: 40px;
+        max-width: calc(100% / 3 - 100px);
+        text-align: left;
+        vertical-align: middle;
+        
+        .file-text {
+            font-size: 13px;
+        }
+    }
+    .cell-main {
+        .file-icon, .file-text, .file-img-display {
+            position: relative;
+            float: left;
+            margin: 0px;
+        }
+        .file-img-display {
+            height: 30px;
+            width: 30px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .file-icon {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+    }
+}
+.file-row-item {
+    .cell-main {
+        .file-display {
+            position: relative;
+            float: left;
+            height: 30px;
+            text-align: center;
+            width: 30px;
+            
+            .display-text {
+                margin: 0px;
+                color: $def-color-1;
+                font: {
+                    size: 10px;
+                    family: $font-identity;
+                }
+            }
+        }
+        .file-text {
+            margin-left: 20px;
+            font: {
+                weight: bold;
+            }
+        }
+    }
+    td {
+        .file-text {
+            margin-top: 7px !important;
+        } 
+    }
+}
+
+
+.file-card-item, .folder-card-item {
+    position: relative;
+    float: left;
+    display: block;
+    margin: 20px;
+    width: calc(100% / 4 - 40px);
+    min-width: 150px;
+    box-shadow: $def-shadow-2;
+    cursor: pointer;
+    overflow: hidden;
+    @include border_radius(10px);
+    
+    td {
+        display: none;
+    }
+    .cell-main, .cell-properties {
+        position: absolute;
+        display: block;
+        top: 0px;
+    }
+    .cell-main {
+        left: 0px;
+        height: 100%;
+        width: 100%;
+    }
+}
+.file-card-item {
+    .cover {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, .2);
+    }
+    .cell-properties {
+        position: absolute;
+        display: block;
+        right: 0px;
+        height: 40px;
+        @include fit_content_x;
+    }
+    .item-display {
+        position: relative;
+        float: left;
+        height: calc(100% - 50px);
+        width: 100%;
+
+        .icon {
+            color: $def-color-1;
+            font: {
+                size: 17px;
+                size: 2.5vw;
+                family: $font-identity;
+            }
+        }
+    }
+
+    .item-content {
+        position: relative;
+        float: left;
+        padding: 0px 20px;
+        height: 40px;
+        width: calc(100% - 50px);
+        
+        .item-text, .item-subtext {
+            margin: 0px;
+            text-align: left;
+        }
+        .item-text {
+            text-overflow: ellipsis;
+            white-space:nowrap;
+            font: {
+                size: 18px;
+            }
+        }
+        .item-subtext {
+            color: $def-grey-3;
+            font: {
+                weight: bold;
+                size: 14px;
+            }
+        }
+    }
+}
+
+.image-file-card-item, .doc-file-card-item {
+    .item-pill {
+        position: relative;
+        float: left;
+        padding: 2px 5px;
+        color: #fff;
+        background: $def-color-2;
+        font-size: 10px;
+        @include border_radius(3px);
+        @include fit_content_x;
+    }
+    .cover {
+        transition-duration: .25s;
+    }
+}
+.image-file-card-item {
+    .image {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        height: calc(100% + 20px);
+        width: calc(100% + 20px);
+        transition-duration: .5s;
+    }
+    .item-content{
+        padding: 20px;
+        width: calc(100% - 40px);
+        @include fit_content_y;
+        
+        .item-text {
+            float: left;
+            color: #fff;
+            font-weight: normal;
+            @include fit_content_x;
+        }
+    }
+    
+    &:hover {
+        .image {
+            @include filter_blur(5px);
+        }
+    }
+}
+.doc-file-card-item {
+    .doc_display {
+        position: absolute;
+        top: -57px;
+        left: -2px;
+        width: calc(100% + 21px);
+        height: calc(100% + 60px);
+        overflow: hidden !important;
+        transition-duration: .5s;
+    }
+    .cover {
+        background: rgba(0, 0, 0, .6)
+    }
+    .item-content{
+        position: absolute;
+        float: none;
+        bottom: 0px;
+        left: 0px;
+        padding: 20px;
+        width: calc(100% - 40px);
+        @include fit_content_y;
+        
+        .item-text {
+            color: #fff;
+            font-weight: normal;
+        }
+        .item-subtext {
+            color: $def-grey-3;
+        }
+    }
+    
+    &:hover {
+        .doc_display {
+            @include filter_blur(5px);
+        }
+    }
+}
+
+.folder-card-item {
+    border-left: 2px #fff solid;
+    height: 50px;
+    width: calc(100% / 4 - 42px);
+    @include border_radius(0px);
+    
+    .item-text {
+        transition-duration: .25s;
+        @include fit_content_x;
+    }
+    &:hover {
+        color: $def-color-1;
+    }
+}
+
+
+.item-row-selected {
+    color: $def-color-1;
+    background: rgba(57, 152, 236, .1);
+    
+    .cover {
+        background: $def-color-2;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 1200px) {
+    .folder-card-item {
+        width: calc(100% / 3 - 42px);
+    }
+    .file-card-item {
+        width: calc(100% / 3 - 40px);
+    }
+}

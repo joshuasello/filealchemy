@@ -1,0 +1,116 @@
+/* 
+    Created on : 29 Jun 2018, 10:55:34 PM
+    Author     : Joshua Sello
+*/
+
+// Layout Variables
+$SCREEN-WIDTH-CONTENT-WIDTH-COLLAPSE: 1000px;
+
+$section-bg: #fff;
+
+$content-width-padding: 160px;
+$content-width-padding-collapsed: 40px;
+
+
+// Layout Styles
+.layout-app {
+    position: absolute !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    top: $NAV-BAR-HEIGHT !important;
+    left: $NAV-MENU-WIDTH !important;
+    height: calc(100% - #{$NAV-BAR-HEIGHT});
+    width: calc(100% - #{$NAV-MENU-WIDTH});
+    overflow-x: hidden;
+    overflow-y: visible;
+    background: $def-grey-5;
+    
+    $gutter-size: 20px;
+    
+    .grid-width-full, .grid-width-3rd-x1, .grid-width-3rd-x2 {
+        margin-left: $gutter-size;
+        margin-right: $gutter-size;
+    }
+    .grid-width-full{
+        width: calc(100% - #{$gutter-size * 2});
+    }
+    .grid-width-3rd-x1{
+        width: calc(100% / 3 - #{$gutter-size * 2});
+    }
+    .grid-width-3rd-x2{
+        width: calc(100% / 3 * 2 - #{$gutter-size * 2});
+    }
+    
+    .grid-height-large, .grid-height-width, .grid-height-medium, .grid-height-thin {
+        margin-top: $gutter-size;
+        margin-bottom: $gutter-size;
+    }
+    
+    .grid-height-large {
+        height: 600px;
+    }
+    .grid-height-medium {
+        height: 320px;
+    }
+    .grid-height-thin {
+        height: 60px;
+    }
+    
+    .content_width {
+
+        /*Works on CHROME/FIREFOX/OPERA*/
+
+        position: relative;
+        float: left;
+        padding: 0px 20px; 
+        width: calc(100% - 40px);
+        @include fit_content_y;
+    }
+    .container {
+        position: relative;
+        float: left;
+        width: 100%;
+        @include fit_content_y;
+    }   
+    
+    .section {
+        position: relative;
+        float: left;
+        width: 100%;
+        display: block;
+        @include fit_content_y;
+        
+        .head, .body {
+            position: relative;
+            float: left;
+            width: 100%;
+        }
+        .head {
+            height: 40px;
+            border-bottom: 1px $def-grey-3 solid;
+            
+            .section-heading {
+                float: left;
+                margin-left: 20px;
+            }
+        }
+        .body {
+            @include fit_content_y;
+        }
+    }
+     
+    .layout-header {
+        position: relative;
+        float: left;
+        padding-bottom: 40px;
+        @include fit_content_y;
+    }
+}
+
+
+@media screen and (min-width: 0px) and (max-width: $SCREEN-WIDTH-CONTENT-WIDTH-COLLAPSE) {
+    .content_width {
+        padding: 0px $content-width-padding-collapsed;
+        width: calc(100% - #{$content-width-padding-collapsed * 2});
+    }
+}

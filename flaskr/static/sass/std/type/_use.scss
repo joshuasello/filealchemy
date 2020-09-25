@@ -1,0 +1,150 @@
+/* 
+    Created on : 29 Jun 2018, 7:01:38 PM
+    Author     : Joshua Sello
+*/
+
+// Imports
+@import "fonts";
+
+// Font Variables
+
+//      text
+$text-margin: 10px 0px 0px 0px;
+$text-size: 18px;
+$tex-line-height: 27px;
+$text-color: inherit;
+
+$text-normal-align: justify;
+$text-normal-weight: 400;
+$text-normal-justify: inter-word;
+$text-normal-color: #777;
+
+//      heading
+$heading-margin: 40px 0px 20px 0px;
+$heading-size: 25px;
+$heading-align: left;
+$heading-color: inherit;
+
+$heading-large-size: 60px;
+$heading-large-weight: normal;
+
+$heading-medium-size: 40px;
+$heading-medium-weight: normal;
+
+$heading-small-size: 30px;
+$heading-small-weight: normal;
+
+//      sub-heading
+$sub-heading-align: left;
+$sub-heading-margin: 20px 0px 0px 0px;
+$sub-heading-color: $def-grey-3;
+$sub-heading-weight: normal;
+$sub-heading-size: 15px;
+$sub-heading-family: $font-text-1;
+
+$sub-heading-hold-height: 20px;
+
+$sub-heading-dec-margin: 0px 10px 0px 0px;
+$sub-heading-dec-height: 3px;
+$sub-heading-dec-width: 50px;
+$sub-heading-dec-bg: $sub-heading-color;
+
+// Font Styles
+* {font-family: $font-text-1;}
+
+//      Text Font Styles
+//uniform
+.text {
+    margin: $text-margin;
+    color: $text-color;
+    
+    font: {
+        family: $font-text-1;  // Default
+        size: $text-size;
+    }
+}
+.text-normal {
+    width: 100%;
+    text-align: $text-normal-align;
+    text-justify: $text-normal-justify;
+    font-weight: $text-normal-weight;
+    color: $text-normal-color;
+    line-height: $tex-line-height;
+}
+
+//      Heading Font Styles
+//uniform
+.heading {
+    margin: $heading-margin;
+    width: 100%;
+    text-align: $heading-align;
+    color: $heading-color;
+    
+    font: {
+        family: $font-heading-1;
+        size: $heading-size;
+    }
+}
+.heading-large {
+    font: {
+        weight: $heading-large-weight;
+        size:  $heading-large-size;
+    }
+}
+.heading-medium {
+    font: {
+        weight: $heading-medium-weight;
+        size:  $heading-medium-size;
+    }
+}
+.heading-small {
+    font: {
+        weight: $heading-small-weight;
+        size:  $heading-small-size;
+    }
+}
+
+//      Sub Heading Font Styles
+.sub-heading {
+    text-align: $sub-heading-align;
+    margin: $sub-heading-margin;
+    color: $sub-heading-color;
+    
+    font: {
+        weight: $sub-heading-weight;
+        size: $sub-heading-size;
+        family: $sub-heading-family;
+    }
+}
+.sub-heading-hold {
+    position: relative;
+    float: left;
+    margin: $sub-heading-margin;
+    height: $sub-heading-hold-height;
+    width: 100%;
+    
+    .sub-heading-dec {
+        position: relative;
+        float: left;
+        margin: $sub-heading-dec-margin;
+        height: $sub-heading-dec-height;
+        width: $sub-heading-dec-width;
+        background: $sub-heading-dec-bg;
+    }
+    .sub-heading {
+        float: left;
+        margin: 0px;
+    }
+}
+
+//      Input Font Styles 
+input, textarea, select, button {
+    font: {
+        family: $font-text-1;
+        size: 15px;
+    }
+}
+
+// RESIZING
+@media screen and (min-width: 0px) and (max-width: 0px) {
+}

@@ -1,0 +1,16 @@
+<div class="image-file-card-item file-card-item"
+    title="{{ item["name"] }}"
+    data-type="file"
+    data-location="{{ item["location"] }}"
+    data-quarantined="{{ item["quarantined"] }}"
+    data-favourite="{{ item["favourite"] }}"
+    data-category="{{ item["type"] }}"
+    >
+    <div class="image"  style="background: #eee url({{ url_for('static', filename='_file_dump/'+item["name"]) }}) no-repeat center; background-size: cover;"></div>
+    <div class="cover"></div>
+
+    <div class="item-content">
+        <p class="item-text">{{ item["name"] }}</p>
+        <p class="item-pill">{{ get_size_string(item["size"]) }}</p>
+    </div>
+</div>

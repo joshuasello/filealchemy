@@ -1,0 +1,58 @@
+/* 
+    Created on : 22 Jul 2017, 8:55:45 PM
+    Author     : Joshua Sello
+    Revisions:
+        Joshua Sello - 2018/04/03: Formalized and cleaned up
+*/
+
+body,html {
+    padding: 0;
+    margin: 0;
+    
+    /*SIZING*/
+    height: 100%;
+    width: 100%;
+    height: 100vh;
+    width: 100vw; 
+    min-height: 100%;
+    max-width: 100%;
+     
+    /*OVERFLOW*/
+    overflow-x: hidden;
+    overflow-y: visable;
+    
+    /*SCROLL BAR*/
+    &::-webkit-scrollbar {
+        z-index: 1009;
+        width: 15px;
+    }
+    &::-webkit-scrollbar-track {background: #eee;}
+    &::-webkit-scrollbar-thumb {background: #bbb;}
+    
+    p {
+        position: relative;
+        transition: color size;
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+        font-family: inherit;
+    }
+    
+    /*FORM NORMILIZATION*/
+    button{cursor: pointer;}
+    input, button, select, textarea {
+        transition: border;
+        &:focus {outline: none;}
+    }
+    textarea {resize: none;}
+    
+    /*TABLE NORMILIZATION*/
+    table {
+        position: relative;
+        width: 100%;
+        border-collapse: collapse;
+        
+        td {position: relative;}
+    }
+}

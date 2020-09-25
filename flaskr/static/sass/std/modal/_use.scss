@@ -1,0 +1,65 @@
+/* 
+    Created on : Aug 10, 2018, 1:09:42 PM
+    Author     : Joshua Sello
+*/
+
+.modal-back {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .3);
+    z-index: 1000;
+    display: none;
+}
+.modal {
+    display: none;
+    position: fixed;
+    margin: auto;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: $def-shadow-2;
+    z-index: 1000;
+    @include fit_content_y;
+    
+    .modal-head {
+        position: relative;
+        float: left;
+        padding: 0px 20px;
+        border-bottom: 1px $def-grey-4 dashed;
+        height: 50px;
+        width: calc(100% - 40px);
+        
+        .modal-heading {
+            float: left;
+        }
+        
+        .modal-head-items {
+            position: relative;
+            float: right;
+            height: 100%;
+            @include fit_content_x;
+        }
+        
+        .action-hold {
+            position: relative;
+            float: left;
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+        }
+    }
+    .modal-body {
+        position: relative;
+        float: left;
+        padding: 0px 20px;
+        width: calc(100% - 40px);
+        @include fit_content_y;
+    }
+}

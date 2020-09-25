@@ -1,0 +1,125 @@
+/* 
+    Created on : Jul 31, 2018, 7:06:26 PM
+    Author     : Joshua Sello
+*/
+
+@import "../std/package";
+
+@import "../std/modal/use";
+
+.heading-small{
+    text-align: left !important;
+}
+
+.modal{
+    #display-dir-structure {
+        float: left;
+        
+        td {
+            text-align: left;
+            
+            .folder-name {
+                float: left;
+                text-align: left;
+            }
+            .folder-icon {
+                float: left;
+                margin-right: 10px;
+            }
+        }
+    }
+}
+#files {
+    .file-group-hold {
+        position: relative;
+        float: left;
+        margin: 20px;
+        padding: 20px;
+        width: calc(100%  - 80px);
+        border: 2px $def-color-1 solid;
+        @include border_radius(5px);
+        @include fit_content_y;
+        
+        .text-group-title {
+            position: absolute;
+            left: 40px;
+            top: -45px;
+            color: $def-color-1;
+        }
+        
+        td {
+            text-align: center;
+            
+            .button {
+                float: none;
+            }
+        }
+    }
+    
+    .file-display {
+        .file-info-hold {
+            position: absolute;
+            padding: 10px;
+            top: 10px;
+            left: 10px;
+            width: calc(100% - 40px);
+            max-width: 300px;
+            background: #fff;
+            box-shadow: $def-shadow-3;
+            display: none;
+            text-align: left;
+            @include fit_content_y;
+            
+            .file-name {
+                margin: 0px;
+                color: $def-color-1;
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        
+        &:hover {
+            .file-info-hold {
+                display: block;
+            }
+        }
+    }
+    
+    .file-image {
+        overflow: hidden;
+        transition-duration: .25s;
+        
+        img {
+            position: relative;
+            height: 100%;
+            transition-duration: .25s;
+        }
+        &:hover {
+            box-shadow: none;
+            background: $def-grey-4;
+            
+            img {
+                height: auto;
+                width: 100%;
+            }
+        }
+    }
+    .file-doc {
+        .icon {
+            font-size: 25px;
+            color: $def-color-1;
+        }
+        .file-info-hold {
+            display: block;
+            box-shadow: none;
+            background: $def-grey-4;
+            
+            .file-name {
+                color: #000 !important;
+            text-wrap: normal;
+            }
+        }
+    }
+}

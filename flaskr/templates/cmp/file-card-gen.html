@@ -1,0 +1,16 @@
+<div class="file-card-item"
+    title="{{ item["name"] }}"
+    data-type="file"
+    data-location="{{ item["location"] }}"
+    data-quarantined="{{ item["quarantined"] }}"
+    data-favourite="{{ item["favourite"] }}"
+    data-category="{{ item["type"] }}"
+    >
+    <div class="item-display">
+        <p class="icon center_vertical">.{{ ext(item["name"]) }}</p>
+    </div>
+    <div class="item-content">
+        <p class="item-text">{{ item["name"] }}</p>
+        <p class="item-subtext">Edited yesterday</p>
+    </div>
+</div>

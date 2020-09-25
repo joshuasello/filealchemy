@@ -1,0 +1,27 @@
+/* 
+    Created on : Sep 2, 2018, 6:31:10 PM
+    Author     : Joshua Sello
+*/
+@import "config";
+
+.nav-bar {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    height: $NAV-BAR-HEIGHT;
+    width: calc(100% - #{$NAV-MENU-WIDTH});
+    z-index: 1000;
+    background: #fff;
+    border-bottom: 1px $def-grey-4 solid;
+    display: block;
+    
+    .items {
+        position: relative;
+        float: right;
+        padding-right: 40px;
+        display: block;
+        height: 100%;
+        max-width: 260px;
+        @include fit_content_x;
+    }
+}

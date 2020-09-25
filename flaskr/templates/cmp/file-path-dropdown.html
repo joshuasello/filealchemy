@@ -1,0 +1,68 @@
+<div class="dropdown dropdown-right" id="dd-path">
+        <div class="dropdown-group">
+            <div class="dropdown-item dropdown-item-textinput">
+                <p class="icon ti-search center_vertical"></p>
+                <input title="Click to search" class="dropdown-input center_vertical" name="" placeholder="Search Folder" required/>
+            </div>
+        </div>
+        <div class="dropdown-group">
+            <div class="dropdown-item dropdown-trig" data-dropdown-id="dd-path-new-folder">
+                <p class="icon ti-folder center_vertical"></p>
+                <p class="item-text center_vertical">New Folder</p>
+            </div>
+            <div class="dropdown-item dropdown-trig" data-dropdown-id="dd-path-rename-folder">
+                <p class="icon ti-pencil-alt center_vertical"></p>
+                <p class="item-text center_vertical">Rename</p>
+            </div>
+            <div class="dropdown-item">
+                <p class="icon ti-arrow-right center_vertical"></p>
+                <p class="item-text center_vertical">Move</p>
+            </div>
+            <div class="dropdown-item">
+                <p class="icon ti-star center_vertical"></p>
+                <p class="item-text center_vertical">Favourite</p>
+            </div>
+            <div class="dropdown-item">
+                <p class="icon ti-trash center_vertical"></p>
+                <p class="item-text center_vertical">Delete</p>
+            </div>
+        </div>
+</div>
+
+<div class="dropdown dropdown-right" id="dd-path-new-folder">
+    <form class="dropdown-group" method="post">
+        <div class="dropdown-item dropdown-item-head">
+            <p class="icon ti-folder center_vertical"></p>
+            <p class="item-text center_vertical">New Folder</p>
+        </div>
+        <div class="dropdown-item dropdown-item-textinput">
+            <p class="icon ti-pencil center_vertical"></p>
+            <input title="Enter new folder name" class="dropdown-input center_vertical" name="" placeholder="Insert folder name..." required/>
+        </div>
+        <button class="dropdown-button">Create Folder</button>
+        
+        <div class="dropdown-item dropdown-item-back  dropdown-trig" data-dropdown-id="dd-path">
+            <p class="icon ti-arrow-left center_vertical"></p>
+            <p class="item-text center_vertical">Back</p>
+        </div>
+    </form>
+</div>
+
+<div class="dropdown dropdown-right" id="dd-path-rename-folder">
+    <form class="dropdown-group" method="post">
+        <div class="dropdown-item dropdown-item-head">
+            <p class="icon ti-folder center_vertical"></p>
+            <p class="item-text center_vertical">Rename Folder</p>
+        </div>
+        <div class="dropdown-item dropdown-item-textinput">
+            <p class="icon ti-pencil center_vertical"></p>
+            <input title="Change folder name" class="dropdown-input center_vertical" name="" placeholder="Insert new name..." required/>
+        </div>
+        <button class="dropdown-button">Change Name</button>
+        
+        <div class="dropdown-item dropdown-item-back  dropdown-trig" data-dropdown-id="dd-path">
+            <p class="icon ti-arrow-left center_vertical"></p>
+            <p class="item-text center_vertical">Back</p>
+        </div>
+    </form>
+</div>

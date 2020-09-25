@@ -1,0 +1,18 @@
+/* 
+    Created on : 29 Jun 2018, 9:42:11 PM
+    Author     : Joshua Sello
+*/
+
+.scroll-bar {
+    &::-webkit-scrollbar {width: 15px;}
+    &::-webkit-scrollbar-track {background: #eee;}
+    &::-webkit-scrollbar-thumb {background: #bbb;}
+}
+.scroll-bar-round {
+    &::-webkit-scrollbar {width: 15px;}
+    &::-webkit-scrollbar-track {background: #eee;}
+    &::-webkit-scrollbar-thumb {
+        background: #bbb;
+        @include border_radius(100px);
+    }
+}

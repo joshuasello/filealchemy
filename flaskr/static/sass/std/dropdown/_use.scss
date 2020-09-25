@@ -1,0 +1,169 @@
+/* 
+    Created on : Aug 23, 2018, 6:22:59 AM
+    Author     : Joshua Sello
+*/
+.dropdown-back {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 1009;
+    display: none;
+}
+.dropdown {
+    position: absolute;
+    display: none;
+    top: 100%;
+    width: 250px;
+    background: #fff;
+    z-index: 1010;
+    box-shadow: $def-shadow-3;
+    @include fit_content_y;
+    
+    form {
+        display: block;
+    }
+    
+    .dropdown-search {
+        position: relative;
+        float: left;
+        padding: 20px;
+        background: $def-color-2;
+        width: calc(100% - 40px);
+        @include fit_content_y;
+        
+        input {
+            height: 30px;
+            width: calc(100% - 20px);
+            padding-left: 20px;
+            border: none;
+            @include border_radius(100px);
+            
+            &:focus {
+                box-shadow: $def-shadow-3;
+            }
+        }
+    }
+    .dropdown-search-item {
+        position: relative;
+        display: block;
+        float: left;
+        padding: 0px 10px;
+        width: calc(100% - 20px);
+        transition-duration: .25s;
+        cursor: pointer;
+        @include fit_content_y;
+        
+        .icon, .text-hold {
+            position: relative;
+            float: left;
+        }
+        .icon {
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+        }
+        .text-hold {
+            position: relative;
+            float: left;
+            padding: 10px 0px;
+            width: calc(100% - 50px);
+            text-align: left;
+            border-bottom: 1px $def-grey-4 solid;
+            @include fit_content_y;
+            
+            p {
+                margin: 0px;
+            }
+        }
+        
+        &:hover {
+            background: $def-grey-4;
+        }
+    }
+    
+    .dropdown-group {
+        position: relative;
+        float: left;
+        padding: 5px 0px;
+        width: 100%;
+        max-height: 500px;
+        border-bottom: 1px $def-grey-3 solid;
+        @include fit_content_y;
+    }
+    
+    .dropdown-item {
+        position: relative;
+        display: block;
+        float: left;
+        width: 100%;
+        height: 40px;
+        cursor: pointer;
+        transition-duration: .25s;
+        
+        .icon, .item-text {
+            float: left;
+        }
+        .icon {
+            margin: 0px 10px 0px 20px;
+        }
+        .item-text {
+            
+        }
+        
+        &:hover {
+            background: $def-grey-4;
+        }
+        
+    }
+    
+    // item types
+    .dropdown-item-textinput {
+        .dropdown-input {
+            position: relative;
+            height: 30px;
+            font-size: 16px;
+            border: none;
+        }
+        &:hover {
+            background: transparent;
+        }
+    } 
+    .dropdown-item-head {
+        color: $def-color-2;
+        margin-bottom: 20px;
+    }
+    .dropdown-item-back {
+        color: $def-grey-2;
+        margin-top: 20px;
+    }
+    
+    .dropdown-button {
+        position: relative;
+        float: left;
+        margin: 0px 20px;
+        margin-top: 10px;
+        height: 30px;
+        width: calc(100% - 40px);
+        font-size: 14px;
+        color: $def-color-2;
+        background: none;
+        background: rgba(90, 77, 232, .1);
+        border: none;
+        @include border_radius(5px);
+    }
+    
+    .dropdown-item-active {
+        background: $def-color-2;
+        color: #fff;
+        
+        &:hover {
+            background: $def-color-2;
+            color: #fff;
+        }
+    }
+}
+.dropdown-right {
+    left: 0px; //change
+}

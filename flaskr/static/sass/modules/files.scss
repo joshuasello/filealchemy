@@ -1,0 +1,20 @@
+/* 
+    Created on : Jul 23, 2018, 10:14:33 PM
+    Author     : Joshua Sello
+*/
+@import "../std/package";
+@import "../std/folder-path/use";
+@import "../std/files/use";
+
+#action-view-toggle {
+        color: #fff;
+        background: $def-color-2;
+        box-shadow: $def-shadow-3;
+        border: 1px $def-color-2 solid;
+        
+        &:hover {
+            background: transparent;
+            color: $def-color-2;
+            box-shadow: none;
+        }
+}

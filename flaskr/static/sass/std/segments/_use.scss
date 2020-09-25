@@ -1,0 +1,73 @@
+/* 
+    Created on : Jul 23, 2018, 9:44:14 PM
+    Author     : Joshua Sello
+*/
+
+.segment-landing {
+    .scroll-button {
+        position: absolute;
+        margin: 0px;
+        bottom: 20px;
+        @include absolute_align_x;
+    }
+    .landing-main-hold {
+        /*
+        Use the center_vertical helper clast in the tage to center vertically
+        */
+        position: relative;
+        float: none;
+        max-width: 75%;
+        @include fit_content_x;
+    }
+    
+    
+    .button-call-to-action {
+        position: relative;
+        float: none;
+        margin-top: 40px;
+        padding: 0px 20px 0px 0px;
+        max-width: calc(100% - 40px);
+        height: 40px;
+        border: none;
+        border-bottom: 2px solid $def-grey-1;
+        background: transparent;
+        color: #000;
+        transition-duration: $def-trans-normal;
+        font: {
+            weight: bold;
+            size: 16px;
+        }
+        @include fit_content_x;
+
+        &:hover {color: $def-color-1;}
+    }
+    
+    .landing-nav {
+        position: relative;
+        float: none;
+        margin: 20px 0 0 0;
+        width: 100%;
+        max-width: 300px;
+        @include fit_content_xy;
+        
+        .item {
+            position: relative;
+            float: left;
+            cursor: pointer;
+            margin: 5px;
+            padding: 0px 10px;
+            display: block;
+            height: 30px;
+            border: 1px $def-color-1 solid;
+            color: $def-color-1;
+            transition-duration: $def-trans-normal;
+            @include fit_content_x;
+            @include border_radius(100px);
+            
+            &:hover {
+                background: $def-color-1;
+                color: #fff;
+            }
+        }
+    }
+}

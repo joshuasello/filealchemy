@@ -1,0 +1,104 @@
+/* 
+    Created on : Aug 17, 2018, 9:02:10 AM
+    Author     : Joshua Sello
+*/
+.contextmenu-back {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 1010;
+    background: transparent;
+    display: none;
+}
+
+.contextmenu {
+    position: fixed;
+    display: none;
+    top: 10px;
+    right: 30px;
+    width: 250px;
+    z-index: 1010;
+    box-shadow: $def-shadow-3;
+    background: #fff;
+    min-height: 150px;
+    max-height: 400px;
+    @include fit_content_y;
+    
+    .contextmenu-view {
+        position: relative;
+        float: left;
+        width: 100%;
+        @include fit_content_y;
+        
+        .contextmenu-group {
+            position: relative;
+            float: left;
+            padding: 5px 0px;
+            width: 100%;
+            border-bottom: 1px $def-grey-3;
+            
+            .contextmenu-head, .contextmenu-item {
+                position: relative;
+                padding: 5px 0px;
+                height: 30px;
+                
+                .contextmenu-icon,.contextmenu-text {
+                    position: relative;
+                    float: left;
+                    margin: 5px 0px;
+                }
+                .contextmenu-icon {
+                    margin-left: 20px;
+                    margin-right: 10px;
+                }
+                .contextmenu-icon-arrow, .contextmenu-count {
+                    position: absolute;
+                    margin: 0px;
+                    top: 13px;
+                    right: 10px;
+                    font-size: 12px;
+                }
+            }
+            .contextmenu-head {
+                .contextmenu-icon {
+                    padding: 5px;
+                    cursor: pointer;
+                    transition-duration: .5s;
+                    @include border_radius(100px);
+                    
+                    &:hover {
+                        background: rgba(0, 0, 0, .15);
+                    }
+                }
+                .contextmenu-count {
+                    color: $def-color-2;
+                    font-size: 16px;
+                }
+            }
+            .contextmenu-item {
+                transition-duration: .25s;
+                cursor: pointer;
+                
+                &:hover {
+                    background: $def-grey-4;
+                }
+            }
+            .empty {
+                cursor: default;
+                color: $def-grey-2;
+                text-align: center !important;
+                
+                .contextmenu-text { 
+                    float: left;
+                    margin-left: 40px;
+                }
+                a {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+

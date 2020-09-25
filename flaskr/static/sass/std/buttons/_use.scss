@@ -1,0 +1,84 @@
+/* 
+    Created on : 29 Jun 2018, 9:12:12 PM
+    Author     : Joshua Sello
+*/
+// Button 
+$button-float: left;
+$button-margin: 20px 10px 0px 0px;
+$button-padding: 0px 20px;
+$button-height: 40px;
+$button-radius: 0px;
+$button-f-size: 15px;
+$button-trans: .5s;
+$button-transform: uppercase;
+
+$scroll-button-bottom: 20px;
+$scroll-button-dim: 40px;
+$scroll-button-bg: transparent;
+$scroll-button-border: none;
+$scroll-button-size: 25px;
+$scroll-button-trans: $button-trans;
+
+// Button Styles
+.button {
+    position: relative;
+    float: left;
+    padding: 0px 20px;
+    margin-left: 20px;
+    max-width: calc(100% - 40px);
+    height: 40px;
+    border: 1px solid $def-color-1;
+    transition-duration: $def-trans-normal !important;
+    @include fit_content_x;
+    @include border_radius(100px);
+}
+.button-a {
+    background: transparent;
+    color: $def-color-1; 
+    box-shadow: none;
+
+    &:hover {
+        background: $def-color-1;
+        color: #fff;
+        box-shadow: $def-shadow-3;
+    }
+}
+.button-b {
+    background: $def-color-1;
+    color: #fff;
+    box-shadow: $def-shadow-3;
+    border: 1px solid $def-color-1;
+
+    &:hover {
+        background: transparent;
+        color: $def-color-1;
+    }
+}
+
+.button-corner {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    height: 40px;
+    width: 40px;
+    background: $def-color-1;
+    color: #fff;
+    border: 1px $def-color-1 solid;
+    box-shadow: $def-shadow-2;
+    @include border_radius(10px);
+}
+
+.scroll-button {
+    position: absolute;
+    bottom: $scroll-button-bottom;
+    height: $scroll-button-dim;
+    width: $scroll-button-dim;
+    background: $scroll-button-bg;
+    border: $scroll-button-border;
+    transition-duration: $scroll-button-trans;
+    z-index: 1;
+    font: {size: $scroll-button-size;}
+    @include absolute_align_x;
+    
+    &:hover {opacity: .5;}
+}

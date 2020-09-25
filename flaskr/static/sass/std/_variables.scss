@@ -1,0 +1,40 @@
+/* 
+    Created on  : 16 Oct 2017, 7:32:26 PM
+    Author      : Joshua Sello
+    Version     : 1.1.1
+*/
+/*
+    def: default
+*/
+
+/*
+SHADOWS STYLE LIST
+    box-shadow: none | h-offset v-offset blur spread color | inset | initial| inherit;
+    MAX: 3 Variants
+*/
+$def-shadow-1:  0px 15px 40px 15px rgba(0,0,0,.15);
+$def-shadow-2:  0px 10px 40px 6px rgba(0,0,0,.15);
+$def-shadow-3:  0px 2.5px 10px 2.5px rgba(0,0,0,.15);
+
+/*COLOR LISTS
+    MAX: 5 Variants
+*/
+$def-color-1: #3998EC;
+$def-color-2: #5A4DE8;
+$def-color-3: #5A4DE8; 
+$def-color-4: #ccc;
+$def-color-5: #ccc;
+
+/*GREYS LIST
+    MAX: 5 Variants
+*/
+$def-grey-1: #444;
+$def-grey-2: #777;
+$def-grey-3: #ccc;
+$def-grey-4: #ededed;
+$def-grey-5: #fcfcfc;
+
+/*TRANSITIONS*/
+$def-trans-fast: .25s;
+$def-trans-normal: .5s;
+$def-trans-slow: 1s;

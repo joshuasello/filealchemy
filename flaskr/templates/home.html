@@ -1,0 +1,103 @@
+{% extends 'base-main.html' %}
+
+{% block page_title %}Home{% endblock %}
+
+{% block header_imports %}
+<link href="{{url_for('static', filename='css/modules/home.css')}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block layout_content %}
+<script>
+    var $current_tab = $('#menu-tab-home');
+    $current_tab.addClass('menu-item-active');
+</script>
+
+<div class="layout-header grid-width-full">
+    <div class="content_width">
+        <p class="heading heading-medium">Welcome back</p>
+        
+        <div class="actions">
+            <div class="action">
+                <p class="ti-info-alt icon center_vertical"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="section" id="section-collections">
+        <div class="content_width">
+            <div class="head">
+                <p class="section-heading center_vertical">Favourites</p>
+            </div>
+            <div class="body">
+                <!--Generic file card-->
+                {% for item in favourites_list %}
+                {% if item["type"] == "images" %}
+                <!--Image file card-->
+                {% include 'cmp/file-card-image.html' %}
+                {% elif ext(item["name"]) in ("pdf", "txt") %}
+                <!--Document file-->
+                {% include 'cmp/file-card-doc.html' %}
+                {% else %}
+                <!--Generic file card-->
+                {% include 'cmp/file-card-gen.html' %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="section-suggested">
+        <div class="content_width">
+            <div class="head">
+                <p class="section-heading center_vertical">Recently Modified</p>
+            </div>
+            <div class="body">
+                
+                <!--Generic file card-->
+                {% for item in recent_files_list %}
+                {% if item["type"] == "images" %}
+                
+                {% elif ext(item["name"]) in ("pdf", "txt") %}
+                <!--Document file-->
+                {% include 'cmp/file-card-doc.html' %}
+                {% else %}
+                <!--Generic file card-->
+                {% include 'cmp/file-card-gen.html' %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="section-watchlist">
+        <div class="content_width">
+            <div class="head">
+                <p class="section-heading center_vertical">Watchlist</p>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="section-recent">
+        <div class="content_width">
+            <div class="head">
+                <p class="section-heading center_vertical">Recent</p>
+            </div>
+        </div>
+    </div>
+</div>   
+<script>
+$(document).ready(function(){
+    window.setInterval(function(){
+                
+        var $item_files = $('.file-card-item');
+        width = $item_files.width();
+        $item_files.css("height", width+"px");
+
+    }, 100);
+});
+</script>
+{% endblock %}
+
+{% block post_imports %}
+<script src="{{url_for('static', filename='js/components/dir_contents_display.js')}}" type="text/javascript"></script>
+{% endblock %}
